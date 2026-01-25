@@ -1,55 +1,56 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!-- 
+Sync Impact Report:
+- Version change: N/A → 2.0.0
+- Modified principles: All principles updated to reflect progressive, multi-phase approach
+- Added sections: Phase-based Evolution Rules, Development Process, Non-functional Requirements
+- Removed sections: N/A
+- Templates requiring updates: ✅ Updated
+- Follow-up TODOs: None
+-->
+# Progressive Todo Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Development Process (NON-NEGOTIABLE)
+Strictly no manual coding — all implementation must be generated via Qwen CLI guided by specifications, plans, and tasks created through Spec-Kit Plus slash commands; Follow the sequence: constitution → specify → clarify → plan → tasks → implement → review → commit; All specifications, plans, and code generations must be versioned in the specs history folder; Every phase/feature addition must have its own specification document.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Code Quality & Style Standards (NON-NEGOTIABLE)
+Python 3.13+ with UV package management; Strict PEP 8 + modern Python style (black/ruff compatible); Full type hints everywhere (use typing & dataclasses where appropriate); Comprehensive docstrings (Google or NumPy style) on every public module/class/function; Separation of concerns: clear modular structure (data models, business logic, presentation/CLI, persistence when introduced); Meaningful names, small functions (<30 lines ideal), early returns, single responsibility.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Testing Standards (NON-NEGOTIABLE)
+pytest coverage ≥ 90% for all implemented features; Unit tests for core operations + edge cases (empty list, invalid IDs, max values, etc.); Tests must be generated and kept in /tests/ folder; Tests must verify both expected behavior and error conditions.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Error Handling & UX Consistency
+Implement robust error handling for all user inputs; Validate command-line arguments and provide helpful error messages; Handle edge cases gracefully without crashing the application; Ensure the application fails safely when encountering unexpected conditions; Provide clear, helpful feedback for all user actions; Maintain consistent CLI interface style across all phases (subcommands preferred: add, list, update, delete, complete, etc.).
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Phase-based Evolution Rules
+Phase I (Basic): In-memory only, 5 core features (add, delete, update, view, mark complete/incomplete) → No persistence, no extra fields beyond id/title/description/completed; Intermediate Phase: Add organization & usability features (priorities, tags/categories, search/filter, sort) → Introduce additional task fields only when the phase specification explicitly requires them → Still prefer in-memory unless persistence is explicitly specified; Advanced Phase: Intelligent features (recurring tasks, due dates/reminders, notifications) → May introduce persistence (file/json/sqlite), scheduling concepts, external integrations only if explicitly specced → Must maintain backward compatibility with previous phases where reasonable.
 
-### [PRINCIPLE_6_NAME]
+### VI. Non-functional Requirements
+Simplicity first — avoid over-engineering for current phase; Performance: efficient operations up to at least 1000 tasks (O(1) lookups where possible); Extensibility: design decisions should allow reasonable future extension without major refactoring; Documentation: always maintain up-to-date README.md with current features, usage examples, and phase status.
 
+## Additional Constraints
 
-[PRINCIPLE__DESCRIPTION]
+Technology stack requirements:
+- Python 3.13+ as the primary runtime
+- UV for package management
+- Argparse for command-line parsing
+- Rich for formatted output
+- Pytest for testing framework
+- No external dependencies beyond the specified stack
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+Project structure requirements:
+- `/src` directory for all source code
+- `/specs` directory for versioned specifications
+- `/tests` directory for all test files
+- `README.md` with setup instructions
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+## Development Workflow
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+All development must follow spec-driven iterations via Qwen CLI; No manual coding without prior specification; Each feature must have clear acceptance criteria before implementation; Code reviews must verify compliance with all constitution principles; Maintain proper git practices with descriptive commit messages; When in doubt, choose the simplest solution that satisfies the current phase specification; Never add features from later phases unless a new specification explicitly requests them; All AI-generated code must follow these principles — if conflict arises, report it and ask for clarification.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes all other development practices; Amendments require explicit documentation and approval; All decisions must prioritize simplicity and avoid over-engineering; The AI agent must implement only required features as specified in the current phase; Project name reference: "Progressive Todo" or "Todo Evolution"; Spec-Kit Plus must be used for all project management.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 2.0.0 | **Ratified**: 2026-01-05 | **Last Amended**: 2026-01-05
